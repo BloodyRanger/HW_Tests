@@ -2,8 +2,9 @@ package account;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,13 +20,24 @@ public class CreditAccountTests {
     @Test
     public void testAddMoneyTrue(){
         int a = 100;
-        assertTrue(sut.addMoney(a));
+        assertThat(sut.addMoney(a), is(true));
     }
 
     @Test
     public void testAddMoneyFalse(){
         int a = 200;
-        assertFalse(sut.addMoney(a));
+        assertThat(sut.addMoney(a), is(false));
     }
+
+    @Test
+    public void testPay(){
+        int a = 10;
+        int balance = sut.balance;
+        int result = sut.pay(a);
+
+        assertThat(result, lessThan(balance));
+    }
+    
+
 
 }

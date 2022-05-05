@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import java.util.stream.Stream;
 
@@ -24,14 +26,14 @@ public class CheckingAccountTests {
 
         int result = sut.pay(a);
 
-        assertEquals(result, expected);
+        assertThat(result, equalTo(expected));
     }
 
     @Test
     public void testAddMoney(){
         int a = 10;
 
-        assertTrue(sut.addMoney(a));
+        assertThat(sut.addMoney(a), is(true));
     }
 
     @ParameterizedTest
@@ -39,7 +41,7 @@ public class CheckingAccountTests {
     public void testPay(int a, int expected){
         int result = sut.pay(a);
 
-        assertEquals(expected, result);
+        assertThat(result, equalTo(expected));
     }
 
     private static Stream<Arguments> source(){

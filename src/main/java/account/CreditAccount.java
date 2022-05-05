@@ -10,7 +10,7 @@ public class CreditAccount extends Account {
     public int pay(int amount) {
         balance -= amount;
         System.out.println("Вы успешно оплатили покупку в размере " + amount + " рублей. Ваша задолженность по кредитному счету составляет " + balance + " рублей.");
-        return amount;
+        return balance;
     }
 
     @Override
